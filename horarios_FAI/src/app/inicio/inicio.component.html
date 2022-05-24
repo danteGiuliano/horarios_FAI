@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading">Horarios FAI {{tiempo|date}} <h2>{{tiempo|date:'HH:mm:ss' }}</h2></div>
+    
+      <!-- Table -->
+      <table class="table">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Materia</th>
+              <th>Modulo</th>
+              <th>Aula</th>
+              <th>Horario</th>
+              <th>Estado</th>
+              <th>Carrera</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of horarios">
+              <td scope="row">{{item.Materium.nombre}}</td>
+              <td>{{item.modulo}}</td>
+              <td>{{item.aula}}</td>
+              <td>{{item.horainicio}} - {{item.horafin}}</td>
+              <td>{{item.estado}}</td>
+              <td> <p *ngFor="let carrera of item.Materium.Carreras"> {{carrera.nombre}}</p></td>
+            </tr>
+          </tbody>
+        </table>
+        
+      </table>
+    </div>
+  </div>
