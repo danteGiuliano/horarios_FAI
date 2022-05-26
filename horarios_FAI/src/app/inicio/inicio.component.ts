@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { HorariosRestService } from '../servicios/horarios-rest.service';
 import {Horarios}  from '../interface/horario';
+import { DateTime } from "luxon";
+
+import { DateParserModule } from '../modulos/date-parser/date-parser.module';
+
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
@@ -9,21 +13,24 @@ import {Horarios}  from '../interface/horario';
 export class InicioComponent implements OnInit {
   constructor(private horarioRest:HorariosRestService) { }
 
+
   public horarios:Horarios[]=[];
-  public tiempo:number=Date.now();
+
+  public time:number=Date.now();
+
+  private reloadTime:number=DateTime.local().hour;
 
   ngOnInit(): void {
+
   this.horarioRest.getHorarios().subscribe((data:Horarios[])=>{
     this.horarios=data
-    console.log()
   })
-  this.time()
-  }
-  
-   time(){
+
+  this.rutine()
+}
+   rutine(){
        setInterval(() => {
-        this.tiempo=Date.now();  
+        this.time=Date.now();  
       }, 1000); 
   }
-
 }
