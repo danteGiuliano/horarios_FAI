@@ -27,7 +27,10 @@ export class HorariosRestService {
     return this.http.get<Horarios[]>(query)
   }
 
-
+  /**
+   * Funcion generica de dia
+   * @returns un string con el dia
+   */
   public diaSemana(){
     return this.map.get(this.date.weekday)
   }
