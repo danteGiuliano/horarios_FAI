@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  URL:"http://cefai.fi.uncoma.edu.ar/horarios?dia=martes&cuatrimestre=1&horainicio=8:00"
+  URL:"http://cefai.fi.uncoma.edu.ar/horarios"
 };
 
 /*

@@ -15,22 +15,38 @@ export class InicioComponent implements OnInit {
 
 
   public horarios:Horarios[]=[];
-
+  public dia:string="";
   public time:number=Date.now();
 
-  private reloadTime:number=DateTime.local().hour;
 
   ngOnInit(): void {
 
   this.horarioRest.getHorarios().subscribe((data:Horarios[])=>{
     this.horarios=data
+    this.materiumFilter()
   })
-
+  this.dia=this.horarioRest.diaSemana()
   this.rutine()
 }
    rutine(){
        setInterval(() => {
-        this.time=Date.now();  
+        this.time=Date.now();
+        setInterval(()=>{
+          this.materiumFilter();
+        },10000)
       }, 1000); 
   }
+
+  /**
+   * Filtra las materias por hora fin, para mostrar en la vista las materias actuales 
+   * o proximas al horario local
+   */
+  private materiumFilter(){
+    this.horarios=this.horarios.filter(horario=>{
+      let time=DateTime.local();
+      let helper=new DateParserModule();
+      return (helper.substractHour(horario.horafin)>=helper.formatFilter(time.hour,time.minute));
+    })
+  }
+
 }
