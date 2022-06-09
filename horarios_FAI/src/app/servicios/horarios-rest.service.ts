@@ -13,7 +13,8 @@ export class HorariosRestService {
   private URL:string=environment.URL;
 
   private date:DateTime= DateTime.local();
-  private map:any=new Map().set(1,"lunes").set(2,"martes").set(3,"miercoles").set(4,"jueves").set(5,"viernes")
+  private map:any=new Map().set(1,"lunes").set(2,"martes").set(3,"miercoles")
+  .set(4,"jueves").set(5,"viernes").set(6,"sabado").set(7,"domingo")
 
   constructor(private http:HttpClient) { }
 
@@ -31,7 +32,8 @@ export class HorariosRestService {
    * Funcion generica de dia
    * @returns un string con el dia
    */
-  public diaSemana(){
+
+  public diaSemana(){ 
     return this.map.get(this.date.weekday)
   }
   private cuatrimestre(){
